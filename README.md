@@ -11,6 +11,7 @@ A robust and scalable rate limiting implementation built with Spring Boot and Re
 - IP and User-Agent based rate limiting
 - Standard rate limit headers support
 - Easy integration with Spring Boot applications
+- Added health indicators to monitor service availability and performance.
 
 ## Technical Stack
 
@@ -115,4 +116,38 @@ When rate limit is exceeded:
 {
   "message": "API Limit Exceed."
 }
+```
+
+
+## Health Indicator
+
+```java
+    //Health route to verify the running services.    
+    public Health health(){
+            Health.Builder healthInstance;
+
+            boolean redisStatus = checkRedis();
+            //Add Services
+            if(redisStatus){ //Add  Service check here
+                healthInstance = Health.up();
+            }else{
+                healthInstance = Health.down();
+            }
+            healthInstance.withDetail("Redis", redisStatus ? "UP" : "DOWN");
+            return healthInstance.build();
+    }
+```
+
+
+## Health Response
+```json
+{
+  "status": "UP",
+  "components": {
+    "redis": {
+      "status": "UP"
+    }
+  }
+}
+
 ```
