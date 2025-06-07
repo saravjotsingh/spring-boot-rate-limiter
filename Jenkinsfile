@@ -2,7 +2,7 @@ pipeline{
     agent any
 
     environment{
-        DOCKER_IMAGE=saravjot91/rate-limit
+        DOCKER_IMAGE = 'saravjot91/rate-limit'
     }
 
     stages{
