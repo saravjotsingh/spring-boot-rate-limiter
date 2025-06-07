@@ -6,7 +6,7 @@ pipeline{
     }
 
     stages{
-        stages("Building"){
+        stage("Building"){
             script{
                 sh "docker build -t ${DOCKER_IMAGE}"
             }
