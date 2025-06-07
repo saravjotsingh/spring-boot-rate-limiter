@@ -1,7 +1,7 @@
-pipeline {
+pipeline{
     agent any
 
-    environment {
+    environment{
         DOCKER_IMAGE = 'saravjot91/rate-limit'
     }
 
